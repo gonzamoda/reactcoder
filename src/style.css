@@ -1,0 +1,13 @@
+body {
+  background-color: lightgrey;
+}
+
+#cartWidget {
+  margin-right: 15px;
+  color: grey;
+  text-decoration: none;
+}
+
+#cartWidget:hover {
+  color: lightgrey;
+}
