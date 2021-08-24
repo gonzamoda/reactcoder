@@ -1,3 +1,9 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
 body {
   background-color: lightgrey;
 }
@@ -10,4 +16,22 @@ body {
 
 #cartWidget:hover {
   color: lightgrey;
+}
+
+.botonMasMenos {
+  width: 40px;
+  height: 40px;
+  padding: 0px;
+}
+
+.contadorItem {
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0px 10px 0px;
+  width: 100%;
+  text-align: center;
+}
+
+.botonAgregarCarrito {
+  width: 100%;
 }
