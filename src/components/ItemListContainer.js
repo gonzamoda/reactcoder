@@ -1,50 +1,86 @@
-import ItemCount from "./ItemCount";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
+import { useEffect, useState } from "react";
+import ItemList from "./ItemList";
+
+//Creo una Promise que devuelve el array de productos
+
+const promiseEjercicio = () => {
+  return new Promise((res, rej) => {
+    setTimeout(
+      () =>
+        res([
+          {
+            id: 29,
+            destacado: true,
+            nombre: "ficus",
+            descripcion:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
+            stock: 10,
+          },
+          {
+            id: 30,
+            destacado: true,
+            nombre: "bonsai",
+            descripcion:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
+            stock: 10,
+          },
+          {
+            id: 31,
+            destacado: false,
+            nombre: "alocasia",
+            descripcion:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
+            stock: 10,
+          },
+          {
+            id: 32,
+            destacado: false,
+            nombre: "olmo",
+            descripcion:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
+            stock: 10,
+          },
+          {
+            id: 33,
+            destacado: false,
+            nombre: "parra",
+            descripcion:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
+            stock: 8,
+          },
+          {
+            id: 34,
+            destacado: false,
+            nombre: "cactus",
+            descripcion:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
+            stock: 8,
+          },
+        ]),
+      3000
+    );
+  });
+};
 
 const ItemListContainer = () => {
-  return (
-    <Container>
-      <Row>
-        <Col xs={12} md={6} lg={4}>
-          <ItemCount
-            stock={5}
-            onAdd={(cantidad) => {
-              console.log(cantidad);
-            }}
-            initial={1}
-          />
-        </Col>
-        <Col xs={12} md={6} lg={4}>
-          <ItemCount
-            stock={4}
-            onAdd={(cantidad) => {
-              console.log(cantidad);
-            }}
-            initial={1}
-          />
-        </Col>
-        <Col xs={12} md={6} lg={4}>
-          <ItemCount
-            stock={7}
-            onAdd={(cantidad) => {
-              console.log(cantidad);
-            }}
-            initial={1}
-          />
-        </Col>
-        <Col xs={12} md={6} lg={4}>
-          <ItemCount
-            stock={0}
-            onAdd={(cantidad) => {
-              console.log(cantidad);
-            }}
-            initial={1}
-          />
-        </Col>
-      </Row>
-    </Container>
+  const [dataShow, setDataShow] = useState([]);
+
+  useEffect(() => {
+    promiseEjercicio().then((data) => {
+      setDataShow(data);
+    });
+  }, []);
+
+  //Mientras se ejecuta la Promise en la pagina se muestra "Cargando..."
+  //Una vez terminada la Promise se muestra ItemList
+  //Le envío el array de productos a ItemList por Props
+
+  return dataShow.length === 0 ? (
+    <h1>Cargando...</h1>
+  ) : (
+    <>
+      <ItemList productos={dataShow} />
+    </>
   );
 };
 
