@@ -57,7 +57,7 @@ const promiseEjercicio = () => {
             stock: 8,
           },
         ]),
-      3000
+      5000
     );
   });
 };
