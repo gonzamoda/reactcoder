@@ -8,7 +8,7 @@ const SliderPrincipal = () => {
         <img className="d-block w-100" src={slider01} alt="First slide" />
         <Carousel.Caption>
           <h3>Gonzalo Modarelli</h3>
-          <p>Desafío Clase 06 - Promises, asincronía y MAP</p>
+          <p>Desafío Clase 07 - Primera Entrega del Proyecto Final</p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

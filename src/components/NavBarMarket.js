@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import CartWidget from "../CartWidget";
+import { Link } from "react-router-dom";
 
 const NavBarMarket = () => {
   return (
@@ -11,14 +12,24 @@ const NavBarMarket = () => {
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#home">Mercadeira</Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">Nosotros</Nav.Link>
+          <Nav.Link as={Link} to="/">
+            Home
+          </Nav.Link>
+          <Nav.Link as={Link} to="/nosotros">
+            Nosotros
+          </Nav.Link>
           <NavDropdown title="Productos" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Plantas</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">Macetas</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Tierra</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/categoria/plantas">
+              Plantas
+            </NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/categoria/macetas">
+              Macetas
+            </NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/categoria/tierra">
+              Tierra
+            </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
+            <NavDropdown.Item as={Link} to="/">
               Todos los productos
             </NavDropdown.Item>
           </NavDropdown>

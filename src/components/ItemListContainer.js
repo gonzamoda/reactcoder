@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ItemList from "./ItemList";
-
-//Creo una Promise que devuelve el array de productos
+import { useParams } from "react-router";
 
 const promiseEjercicio = () => {
   return new Promise((res, rej) => {
@@ -11,53 +10,71 @@ const promiseEjercicio = () => {
           {
             id: 29,
             destacado: true,
-            nombre: "ficus",
+            nombre: "Ficus",
+            categoria: "plantas",
+            img: "https://microplantstudio.com/wp-content/uploads/2018/05/ficus.jpg",
             descripcion:
               "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
             stock: 10,
+            precio: 2650,
           },
           {
             id: 30,
             destacado: true,
-            nombre: "bonsai",
+            nombre: "Bonsai",
+            categoria: "plantas",
+            img: "http://bonsaitonight.com/wp-content/uploads/2017/09/red-pine-bonsai.jpg",
             descripcion:
               "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
             stock: 10,
+            precio: 2650,
           },
           {
             id: 31,
             destacado: false,
-            nombre: "alocasia",
+            nombre: "Alocasia",
+            categoria: "plantas",
+            img: "https://www.plantandpot.nz/wp-content/uploads/2019/11/Elephant-Ears-Alocasia-Plant.jpg",
             descripcion:
               "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
             stock: 10,
+            precio: 2650,
           },
           {
             id: 32,
             destacado: false,
-            nombre: "olmo",
+            nombre: "Pandurata",
+            categoria: "plantas",
+            img: "https://cdn.shopify.com/s/files/1/0062/0521/0712/products/Ficus_pandurata-lyrata_maceta_azul_1200x1200.jpg?v=1593402446",
             descripcion:
               "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
             stock: 10,
+            precio: 2650,
           },
           {
             id: 33,
             destacado: false,
-            nombre: "parra",
+            nombre: "Maceta de barro",
+            categoria: "macetas",
+            img: "https://newcastlebeach.org/images/una-maceta-vacia-png-7.png",
             descripcion:
               "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
             stock: 8,
+            precio: 2650,
           },
           {
             id: 34,
             destacado: false,
-            nombre: "cactus",
+            nombre: "Abono",
+            categoria: "tierra",
+            img: "https://www.newearthcompost.com/wp-content/uploads/2018/08/new-earth-humus-compost-hand.jpg",
             descripcion:
               "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
             stock: 8,
+            precio: 2650,
           },
         ]),
-      5000
+      1000
     );
   });
 };
@@ -65,15 +82,20 @@ const promiseEjercicio = () => {
 const ItemListContainer = () => {
   const [dataShow, setDataShow] = useState([]);
 
+  const { categoria } = useParams();
+
   useEffect(() => {
     promiseEjercicio().then((data) => {
-      setDataShow(data);
-    });
-  }, []);
+      let resultadoCategoria;
+      if (categoria) {
+        resultadoCategoria = data.filter((p) => p.categoria === categoria);
+      } else {
+        resultadoCategoria = data;
+      }
 
-  //Mientras se ejecuta la Promise en la pagina se muestra "Cargando..."
-  //Una vez terminada la Promise se muestra ItemList
-  //Le envío el array de productos a ItemList por Props
+      setDataShow(resultadoCategoria);
+    });
+  }, [categoria]);
 
   return dataShow.length === 0 ? (
     <h1>Cargando...</h1>

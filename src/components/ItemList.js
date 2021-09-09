@@ -3,9 +3,6 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-//Con el array de productos recibidos hago un map para mostrar cada elemento como <li>
-//Cada item de la lista es un Item, al cual le paso la información por prop.
-
 const ItemList = ({ productos }) => {
   return (
     <>
@@ -16,9 +13,12 @@ const ItemList = ({ productos }) => {
               <Col md="4">
                 <li key={element.id}>
                   <Item
+                    id={element.id}
                     nombre={element.nombre}
+                    imagen={element.img}
                     descripcion={element.descripcion}
                     stock={element.stock}
+                    precio={element.precio}
                   />
                 </li>
               </Col>
