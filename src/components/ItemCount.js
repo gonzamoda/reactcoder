@@ -20,13 +20,10 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     }
   };
 
-  const agregarCarrito = () => {
-    if (stock > 0) {
-      onAdd(estado);
-    }
-  };
-
   useEffect(() => {}, []);
+
+  console.log(estado);
+
   return (
     <>
       <Container fluid>
@@ -52,7 +49,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
         <Button
           className="botonAgregarCarrito"
           variant="primary"
-          onClick={agregarCarrito}
+          onClick={onAdd}
         >
           Agregar al Carrito
         </Button>

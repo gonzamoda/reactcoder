@@ -10,7 +10,9 @@ const NavBarMarket = () => {
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Mercadeira</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">
+          Mercadeira
+        </Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link as={Link} to="/">
             Home
@@ -33,7 +35,9 @@ const NavBarMarket = () => {
               Todos los productos
             </NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link href="#pricing">Sucursales</Nav.Link>
+          <Nav.Link as={Link} to="/sucursales">
+            Sucursales
+          </Nav.Link>
         </Nav>
         <CartWidget />
         <Form inline>
