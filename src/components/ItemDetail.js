@@ -5,6 +5,8 @@ import ItemCount from "./ItemCount";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { contexto } from "./CartContext";
 
 const ItemDetail = ({ productoDetalle }) => {
   const ButtonIr = () => {
@@ -17,16 +19,27 @@ const ItemDetail = ({ productoDetalle }) => {
 
   const [inputType, setInputType] = useState("botonItemCount");
 
-  const onAdd = () => {
+  const { addProduct } = useContext(contexto);
+
+  const onAdd = (estado) => {
+    console.log(estado);
+    const productoFormateado = { ...productoDetalle, cantidad: { estado } };
+    addProduct(productoFormateado);
     setInputType("botonIrCarrito");
   };
 
   return (
     <Container>
       <Row>
-        <Col md="4">
+        <Col md="6">
+          <img
+            className="imgDetail"
+            src={productoDetalle.img}
+            alt={productoDetalle.nombre}
+          />
+        </Col>
+        <Col md="6">
           <div>
-            <img src={productoDetalle.img} alt={productoDetalle.nombre} />
             <h1>{productoDetalle.nombre}</h1>
             <p>{productoDetalle.descripcion}</p>
             <h2>${productoDetalle.precio}</h2>
