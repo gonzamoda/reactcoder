@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail";
 import { useParams } from "react-router";
+import Spinner from "react-bootstrap/Spinner";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 
 const promiseDetail = () => {
   return new Promise((res, rej) => {
@@ -94,10 +97,14 @@ const ItemDetailContainer = () => {
   }, [id]);
 
   return dataShow.length === 0 ? (
-    <h1>Cargando...</h1>
+    <Container>
+      <Row className="spinner">
+        <Spinner animation="border" variant="success" />
+      </Row>
+    </Container>
   ) : (
     <>
-      <ItemDetail key={dataShow.id} productoDetalle={dataShow} />
+      <ItemDetail productoDetalle={dataShow} />
     </>
   );
 };

@@ -8,7 +8,14 @@ const SliderPrincipal = () => {
         <img className="d-block w-100" src={slider01} alt="First slide" />
         <Carousel.Caption>
           <h3>Gonzalo Modarelli</h3>
-          <p>Desafío Clase 07 - Primera Entrega del Proyecto Final</p>
+          <p>Desafío Clase 11 - Cart View</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img className="d-block w-100" src={slider01} alt="Second slide" />
+        <Carousel.Caption>
+          <h3>Gonzalo Modarelli</h3>
+          <p>Desafío Clase 11 - Cart View</p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

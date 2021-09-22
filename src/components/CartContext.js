@@ -9,26 +9,26 @@ const CartContext = ({ children }) => {
 
   const addProduct = (producto) => {
     if (isInCart(producto.id)) {
-      const nuevaCantidad = producto.cantidad.estado;
-      // console.log(nuevaCantidad);
+      const productoViejo = carrito.find((p) => p.id === producto.id);
 
-      const productoViejo = carrito.find((producto) => producto.id);
+      const nuevaCantidad = producto.cantidad;
+      const cantidadVieja = productoViejo.cantidad;
 
-      const cantidadVieja = productoViejo.cantidad.estado;
-      // console.log(cantidadVieja);
+      const productoNuevo = {
+        ...producto,
+        cantidad: nuevaCantidad + cantidadVieja,
+      };
 
-      productoViejo.cantidad.estado = nuevaCantidad + cantidadVieja;
+      const nuevoCarrito = carrito.filter((el) => el.id !== producto.id);
 
-      console.log(productoViejo.cantidad.estado);
-
-      setCarrito([...carrito]);
+      setCarrito([...nuevoCarrito, productoNuevo]);
     } else {
       setCarrito([...carrito, producto]);
     }
   };
 
   const removeProduct = (id) => {
-    const nuevoEstadoCarrito = carrito.filter((producto) => producto.id !== id);
+    const nuevoEstadoCarrito = carrito.filter((p) => p.id !== id);
     setCarrito(nuevoEstadoCarrito);
   };
 

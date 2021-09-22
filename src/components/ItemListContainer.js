@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import ItemList from "./ItemList";
 import { useParams } from "react-router";
+import Spinner from "react-bootstrap/Spinner";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 
 const promiseEjercicio = () => {
   return new Promise((res, rej) => {
@@ -74,7 +77,7 @@ const promiseEjercicio = () => {
             precio: 2650,
           },
         ]),
-      1000
+      3000
     );
   });
 };
@@ -98,10 +101,16 @@ const ItemListContainer = () => {
   }, [categoria]);
 
   return dataShow.length === 0 ? (
-    <h1>Cargando...</h1>
+    <>
+      <Container>
+        <Row className="spinner">
+          <Spinner animation="border" variant="success" />
+        </Row>
+      </Container>
+    </>
   ) : (
     <>
-      <ItemList productos={dataShow} />
+      <ItemList key={dataShow.id} productos={dataShow} />
     </>
   );
 };

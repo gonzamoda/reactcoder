@@ -20,7 +20,7 @@ const App = () => {
             path="/productos/detalles/:id"
             component={ItemDetailContainer}
           />
-          <Route path="/Cart" component={Cart} />
+          <Route path="/cart" component={Cart} />
         </Switch>
       </CartContext>
     </BrowserRouter>

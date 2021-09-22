@@ -5,8 +5,15 @@ import FormControl from "react-bootstrap/FormControl";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import CartWidget from "../CartWidget";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { contexto } from "./CartContext";
 
 const NavBarMarket = () => {
+  const { carrito } = useContext(contexto);
+  const cantidadTotal = carrito
+    .map((item) => item.cantidad)
+    .reduce((prev, curr) => prev + curr, 0);
+
   return (
     <>
       <Navbar bg="dark" variant="dark">
@@ -39,7 +46,17 @@ const NavBarMarket = () => {
             Sucursales
           </Nav.Link>
         </Nav>
-        <CartWidget />
+        <Link id="carrito" to="/cart">
+          <CartWidget />
+          <span
+            className={
+              cantidadTotal > 0 ? "cantidadCarrito" : "carritoNoVisible"
+            }
+          >
+            {cantidadTotal}
+          </span>
+        </Link>
+
         <Form inline>
           <FormControl
             type="text"

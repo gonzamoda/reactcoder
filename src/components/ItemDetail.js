@@ -21,9 +21,8 @@ const ItemDetail = ({ productoDetalle }) => {
 
   const { addProduct } = useContext(contexto);
 
-  const onAdd = (estado) => {
-    console.log(estado);
-    const productoFormateado = { ...productoDetalle, cantidad: { estado } };
+  const onAdd = (cantidad) => {
+    const productoFormateado = { ...productoDetalle, cantidad };
     addProduct(productoFormateado);
     setInputType("botonIrCarrito");
   };
