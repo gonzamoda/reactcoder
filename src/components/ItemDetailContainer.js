@@ -4,83 +4,7 @@ import { useParams } from "react-router";
 import Spinner from "react-bootstrap/Spinner";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-
-const promiseDetail = () => {
-  return new Promise((res, rej) => {
-    setTimeout(
-      () =>
-        res([
-          {
-            id: 29,
-            destacado: true,
-            nombre: "Ficus",
-            categoria: "plantas",
-            img: "https://microplantstudio.com/wp-content/uploads/2018/05/ficus.jpg",
-            descripcion:
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
-            stock: 10,
-            precio: 2650,
-          },
-          {
-            id: 30,
-            destacado: true,
-            nombre: "Bonsai",
-            categoria: "plantas",
-            img: "http://bonsaitonight.com/wp-content/uploads/2017/09/red-pine-bonsai.jpg",
-            descripcion:
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
-            stock: 10,
-            precio: 2650,
-          },
-          {
-            id: 31,
-            destacado: false,
-            nombre: "Alocasia",
-            categoria: "plantas",
-            img: "https://www.plantandpot.nz/wp-content/uploads/2019/11/Elephant-Ears-Alocasia-Plant.jpg",
-            descripcion:
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
-            stock: 10,
-            precio: 2650,
-          },
-          {
-            id: 32,
-            destacado: false,
-            nombre: "Pandurata",
-            categoria: "plantas",
-            img: "https://cdn.shopify.com/s/files/1/0062/0521/0712/products/Ficus_pandurata-lyrata_maceta_azul_1200x1200.jpg?v=1593402446",
-            descripcion:
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
-            stock: 10,
-            precio: 2650,
-          },
-          {
-            id: 33,
-            destacado: false,
-            nombre: "Maceta de barro",
-            categoria: "macetas",
-            img: "https://newcastlebeach.org/images/una-maceta-vacia-png-7.png",
-            descripcion:
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
-            stock: 8,
-            precio: 2650,
-          },
-          {
-            id: 34,
-            destacado: false,
-            nombre: "Abono",
-            categoria: "tierra",
-            img: "https://www.newearthcompost.com/wp-content/uploads/2018/08/new-earth-humus-compost-hand.jpg",
-            descripcion:
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repudiandae harum dignissimos quo labore excepturi aperiam, nemo perspiciatis ipsum aliquam recusandae aspernatur fuga consectetur tempore distinctio sequi cumque. Ipsam, reiciendis.",
-            stock: 8,
-            precio: 2650,
-          },
-        ]),
-      1000
-    );
-  });
-};
+import { firestore } from "./firebase";
 
 const ItemDetailContainer = () => {
   const [dataShow, setDataShow] = useState([]);
@@ -88,10 +12,22 @@ const ItemDetailContainer = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    promiseDetail().then((resultadoDetalle) => {
-      let itemSeleccionado = resultadoDetalle.filter(
-        (p) => p.id === parseInt(id)
-      );
+    const db = firestore;
+    const collection = db.collection("productos");
+    const query = collection.get();
+    query.then((snapshot) => {
+      const docs = snapshot.docs;
+
+      const productos = [];
+
+      docs.forEach((doc) => {
+        const docSnapshot = doc;
+
+        const productoConId = { ...docSnapshot.data(), id: docSnapshot.id };
+        productos.push(productoConId);
+      });
+
+      let itemSeleccionado = productos.filter((p) => p.id === id);
       setDataShow(...itemSeleccionado);
     });
   }, [id]);
