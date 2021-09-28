@@ -52,7 +52,10 @@ const ItemDetail = ({ productoDetalle }) => {
                 onAdd={onAdd}
               />
             ) : (
-              <ButtonIr />
+              <>
+                <ButtonIr />
+                <Button>Modificar</Button>
+              </>
             )}
           </div>
         </Col>

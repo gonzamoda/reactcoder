@@ -58,8 +58,14 @@ const Cart = () => {
               ))}
             </tbody>
           </Table>
-
+        </Row>
+        <Row>
           <h1>Total: ${precioTotal}</h1>
+        </Row>
+        <Row>
+          <Button as={Link} to="/user">
+            COMPRAR
+          </Button>
         </Row>
       </Container>
     </>
@@ -67,5 +73,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-//onClick={eliminar(element.id)}

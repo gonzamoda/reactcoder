@@ -78,3 +78,18 @@ ul li {
 .carritoNoVisible {
   display: none;
 }
+
+#formularioUsuario {
+  margin-top: 50px;
+  width: 50%;
+  justify-content: center;
+}
+
+.input {
+  margin: 10px;
+}
+
+.botonFormulario {
+  margin-top: 25px;
+  margin-left: 10px;
+}
