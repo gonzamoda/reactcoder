@@ -1,5 +1,6 @@
 import Carousel from "react-bootstrap/Carousel";
 import slider01 from "../images/slider01.jpg";
+import slider02 from "../images/slider02.jpg";
 
 const SliderPrincipal = () => {
   return (
@@ -7,15 +8,15 @@ const SliderPrincipal = () => {
       <Carousel.Item>
         <img className="d-block w-100" src={slider01} alt="First slide" />
         <Carousel.Caption>
-          <h3>Gonzalo Modarelli</h3>
-          <p>Desafío Clase 13 - Item Collection II</p>
+          <h3>Plantas de Interior y Exterior</h3>
+          <p>Todo lo que buscás en un solo lugar</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src={slider01} alt="Second slide" />
+        <img className="d-block w-100" src={slider02} alt="Second slide" />
         <Carousel.Caption>
-          <h3>Gonzalo Modarelli</h3>
-          <p>Desafío Clase 13 - Item Collection II</p>
+          <h3>Plantas de Interior y Exterior</h3>
+          <p>Todo lo que buscás en un solo lugar</p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

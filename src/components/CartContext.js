@@ -42,8 +42,6 @@ const CartContext = ({ children }) => {
 
   const contexto = { carrito, addProduct, clear, removeProduct };
 
-  console.log(carrito);
-
   return <Provider value={contexto}>{children}</Provider>;
 };
 export default CartContext;

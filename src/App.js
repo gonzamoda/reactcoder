@@ -8,6 +8,7 @@ import Cart from "./components/Cart";
 import CartContext from "./components/CartContext";
 import User from "./components/User";
 import Gracias from "./components/Gracias";
+import Nosotros from "./components/Nosotros";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/cart" component={Cart} />
           <Route path="/user" component={User}></Route>
           <Route path="/gracias" component={Gracias}></Route>
+          <Route path="/nosotros" component={Nosotros}></Route>
         </Switch>
       </CartContext>
     </BrowserRouter>

@@ -93,3 +93,15 @@ ul li {
   margin-top: 25px;
   margin-left: 10px;
 }
+
+#nosotros {
+  padding-top: 50px;
+}
+
+.nosotrosImg {
+  width: 100%;
+}
+
+.botonSeguir {
+  margin-left: 25px;
+}

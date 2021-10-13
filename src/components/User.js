@@ -40,9 +40,7 @@ const User = () => {
 
     const orden = { compra, usuario };
 
-    const query = collection.add(orden);
-
-    query.then(() => console.log("Se hizo el pedido correctamente"));
+    collection.add(orden);
   };
 
   return (

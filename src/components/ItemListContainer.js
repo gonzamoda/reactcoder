@@ -14,27 +14,25 @@ const ItemListContainer = () => {
   useEffect(() => {
     const db = firestore;
     const collection = db.collection("productos");
-    const query = collection.get();
+    let query;
+    if (categoria) {
+      query = collection.where("categoria", "==", categoria);
+      query = query.get();
+    } else {
+      query = collection.get();
+    }
+
     query.then((snapshot) => {
       const docs = snapshot.docs;
-
       const productos = [];
 
       docs.forEach((doc) => {
         const docSnapshot = doc;
-
         const productoConId = { ...docSnapshot.data(), id: docSnapshot.id };
         productos.push(productoConId);
       });
 
-      let resultadoCategoria;
-      if (categoria) {
-        resultadoCategoria = productos.filter((p) => p.categoria === categoria);
-      } else {
-        resultadoCategoria = productos;
-      }
-
-      setDataShow(resultadoCategoria);
+      setDataShow(productos);
     });
   }, [categoria]);
 

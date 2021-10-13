@@ -1,7 +1,5 @@
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import CartWidget from "../CartWidget";
 import { Link } from "react-router-dom";
@@ -42,9 +40,6 @@ const NavBarMarket = () => {
               Todos los productos
             </NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link as={Link} to="/sucursales">
-            Sucursales
-          </Nav.Link>
         </Nav>
         <Link id="carrito" to="/cart">
           <CartWidget />
@@ -56,14 +51,6 @@ const NavBarMarket = () => {
             {cantidadTotal}
           </span>
         </Link>
-
-        <Form inline>
-          <FormControl
-            type="text"
-            placeholder="¿Qué estás buscando?"
-            className="mr-sm-2"
-          />
-        </Form>
       </Navbar>
     </>
   );

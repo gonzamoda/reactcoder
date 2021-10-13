@@ -14,21 +14,15 @@ const ItemDetailContainer = () => {
   useEffect(() => {
     const db = firestore;
     const collection = db.collection("productos");
-    const query = collection.get();
+    let query = collection.doc(id);
+    query = query.get();
+
     query.then((snapshot) => {
-      const docs = snapshot.docs;
+      const producto = [];
+      const productoConId = { ...snapshot.data(), id: snapshot.id };
+      producto.push(productoConId);
 
-      const productos = [];
-
-      docs.forEach((doc) => {
-        const docSnapshot = doc;
-
-        const productoConId = { ...docSnapshot.data(), id: docSnapshot.id };
-        productos.push(productoConId);
-      });
-
-      let itemSeleccionado = productos.filter((p) => p.id === id);
-      setDataShow(...itemSeleccionado);
+      setDataShow(...producto);
     });
   }, [id]);
 

@@ -54,7 +54,9 @@ const ItemDetail = ({ productoDetalle }) => {
             ) : (
               <>
                 <ButtonIr />
-                <Button>Modificar</Button>
+                <Button className="botonSeguir" as={Link} to="/">
+                  Seguir Comprando
+                </Button>
               </>
             )}
           </div>
